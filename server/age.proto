@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+
+package agePackage;
+
+
+message Request {
+    int32 month = 1;
+    int32 year = 2;
+}
+
+
+message Response {
+    int32 age_years = 1;
+    int32 age_months = 2;
+}
+
+
+service Age {
+    rpc getAge(Request) returns (Response);
+}

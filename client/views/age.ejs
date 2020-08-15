@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Task</title>
+</head>
+<body>
+  <div>
+    <label>Year:</label>
+    <input type="text" id="year"/>
+    <label>Month:</label>
+    <input type="text" id="month"/>
+    <button onclick="getAge()">Submit</button>
+  </div>
+  <div>
+    <h4>Age:</h4>
+    <div>
+      <h5 id="years"></h5>
+      <h5 id="months"></h5>
+    </div>
+  </div>
+</body>
+<script>
+  function getAge(){
+    let year = document.getElementById('year').value
+    let month = document.getElementById('month').value
+  
+    fetch(`http://localhost:3000/get_age?month=${month}&year=${year}`)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        document.getElementById("months").innerHTML = `Months: ${data.age_months}`
+        document.getElementById("years").innerHTML = `Years: ${data.age_years}`
+    });
+  }
+</script>
+</html>
